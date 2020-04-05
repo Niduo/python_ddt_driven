@@ -60,7 +60,6 @@ class TestFile(unittest.TestCase):
         步骤：
         1、启动浏览器输入打开百度，在json文件获取第一个key ‘python’，输入并搜索
         2、启动浏览器输入打开百度，在json文件获取第一个key ‘java’，输入并搜索
-        3、启动浏览器输入打开百度，在json文件获取第一个key ‘java’，输入并搜索
         :param keys: 依次再file_data里读取的value值， 文件key值需保持一致
         :return: 浏览器title=搜索的关键字+_百度搜索
         """
@@ -92,6 +91,6 @@ if __name__ == '__main__':
     # suite.addTest(TestFile())
     # unittest.TextTestRunner.run(suite)
     # suite = unittest.defaultTestLoader.discover(start_dir='./', pattern=caseFile)
-    with open(report_file, 'w', encoding='UTF-8') as fp:
-        runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title="测试json格式驱动", description="des")
+    with open(report_file, 'wb+') as fp:
+        runner = HTMLTestRunner.HTMLTestRunner(stream=fp, title="测试json格式驱动", description="ddt json数据驱动demo")
         runner.run(suite)

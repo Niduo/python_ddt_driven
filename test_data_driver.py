@@ -19,8 +19,7 @@ report_file = public_var.currentPath+'\\report\\'+caseName+public_var.nowTime+'.
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-    datefmt='%a, %Y-%m-%d %H:%M:%S',
-    filemode='w'
+    datefmt='%a, %Y-%m-%d %H:%M:%S'
 )
 
 
@@ -72,7 +71,7 @@ class TestDataDriver(unittest.TestCase):
 
     @data(("case1", "mouse"), ("case2", "keyboard"))
     @unpack
-    # @unittest.skip("暂不执行")
+    @unittest.skip("暂不执行")
     def test_tuple_search(self, keys, searchWord):
         try:
             self.search(searchWord)
@@ -92,7 +91,7 @@ class TestDataDriver(unittest.TestCase):
 
     @data({"keys": "1"}, {"keys": "2"})
     @unpack
-    # @unittest.skip("暂不执行")
+    @unittest.skip("暂不执行")
     def test_dict_search(self, keys):
         try:
             self.search(keys)
@@ -112,10 +111,10 @@ class TestDataDriver(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    suit = unittest.TestSuite()
+    suite = unittest.TestSuite()
     load = unittest.TestLoader()
-    suit.addTest(load.loadTestsFromTestCase(TestDataDriver))
+    suite.addTest(load.loadTestsFromTestCase(TestDataDriver))
     # suit.addTest(TestDataDriver('test_list_search'))
-    with open(report_file, 'w', encoding='utf-8') as fp:
-        runner = HTMLTestRunner.HTMLTestRunner(stream=fp,  title='测试data格式驱动', description='des')
-        runner.run(suit)
+    with open(report_file, 'wb+') as fp:
+        runner = HTMLTestRunner.HTMLTestRunner(stream=fp,  title='测试data格式驱动', description='ddt data驱动demo')
+        runner.run(suite)
